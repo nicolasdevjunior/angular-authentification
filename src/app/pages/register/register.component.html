@@ -1,0 +1,340 @@
+<!-- <ngx-ui-loader></ngx-ui-loader> -->
+
+<div class="body d-flex align-items-center justify-content-center">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-7 text-center p-0">
+                <div class="card px-4 pt-3 mt-3">
+                    <h6 id="heading">Créer un compte</h6>
+                    <!-- <form id="msform" [formGroup]="registerForm" (ngSubmit)="onSubmit();"> -->
+                    <div id="msform">
+                        <!-- progressbar -->
+                        <ul id="progressbar" class="p-0 m-0">
+                            <li class="active" id="account">
+                                <strong>Personnel</strong></li>
+                            <li id="personal"><strong>Identification</strong></li>
+                            <li id="payment"><strong>Photos</strong></li>
+                            <li id="confirm"><strong>Complète</strong></li>
+                        </ul>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> <br>
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <form [formGroup]="personnalForm">
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <div *ngIf="msgHide" (click)="clickOnAlert()">
+                                                <div *ngIf="error" class="alert alert-danger text-center">{{error}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Information personnel:</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Etape 1 - 4</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="fieldlabels">Nom: *</label>
+                                                <input type="text" formControlName="nom" class="form-control"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"
+                                                    placeholder="Votre nom ici.." />
+                                                <ng-container *ngFor="let validation of validation_messages.nom">
+                                                    <div class="alert alert-danger text-center"
+                                                        *ngIf="personnalForm.get('nom').hasError(validation.type) && (personnalForm.get('nom').dirty || personnalForm.get('nom').touched)">
+                                                        {{ validation.message }}
+                                                    </div>
+                                                </ng-container>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="fieldlabels">Prenom: *</label>
+                                                <input type="text" name="prenom" formControlName="prenom"
+                                                    class="form-control"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }"
+                                                    placeholder="Votre prenom..." class="form-control" />
+                                                <ng-container *ngFor="let validation of validation_messages.prenom">
+                                                    <div class="alert alert-danger text-center"
+                                                        *ngIf="personnalForm.get('prenom').hasError(validation.type) && (personnalForm.get('prenom').dirty || personnalForm.get('prenom').touched)">
+                                                        {{ validation.message }}
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="fieldlabels">Appelation: *</label>
+                                                <input type="text" formControlName="appellation" class="form-control"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.appellation.errors }"
+                                                    placeholder="Votre appellation..." />
+                                            </div>
+                                            <ng-container *ngFor="let validation of validation_messages.appellation">
+                                                <div class="alert alert-danger text-center"
+                                                    *ngIf="personnalForm.get('appellation').hasError(validation.type) && (personnalForm.get('appellation').dirty || personnalForm.get('appellation').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="label">
+                                                Date de naissance : <span class="asterisk">*</span>
+                                            </div>
+                                            <mat-form-field class="full-width-datepicker">
+                                                <mat-datepicker-toggle matPrefix [for]="startDate">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #startDate format="D/MM/YYYY"></mat-datepicker>
+                                                <input formControlName="naissance" matInput id="start-date"
+                                                    placeholder="D/MM/YYYY" [matDatepicker]="startDate"
+                                                    [value]="startDate" />
+                                            </mat-form-field>
+
+                                            <ng-container *ngFor="let validation of validation_messages.naissance">
+                                                <div class="alert alert-danger text-center"
+                                                    *ngIf="personnalForm.get('naissance').hasError(validation.type) && (personnalForm.get('naissance').dirty || personnalForm.get('naissance').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="label">
+                                                    Pièce d'identité: *
+                                                </div>
+                                                <input type="file" name="piece" id="piece" class="form-control"
+                                                    (change)="onPieceChange($event)" />
+                                                <button onClick="$('#piece').click()"
+                                                    class="btn btn-sm btn-block btn-outline-dark mt-3">Votre pièce
+                                                    d'identité ici...</button>
+                                                <ng-container *ngFor="let validation of validation_messages.piece">
+                                                    <div class="alert alert-danger text-center"
+                                                        *ngIf="personnalForm.get('piece').hasError(validation.type) && (personnalForm.get('piece').dirty || personnalForm.get('piece').touched)">
+                                                        {{ validation.message }}
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="fieldlabels">Adresse: *</label>
+                                                <input type="text" name="adresse" placeholder="Votre adresse ici..."
+                                                    formControlName="adresse" class="form-control"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }" />
+                                                <ng-container *ngFor="let validation of validation_messages.adresse">
+                                                    <div class="alert alert-danger text-center"
+                                                        *ngIf="personnalForm.get('adresse').hasError(validation.type) && (personnalForm.get('adresse').dirty || personnalForm.get('adresse').touched)">
+                                                        {{ validation.message }}
+                                                    </div>
+                                                </ng-container>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Vous avez dejà un compte <a href="#" routerLink="/login"><small
+                                            class="text-primary">Se
+                                            connecter</small></a></p>
+                                <button class="next action-button" [disabled]="personnalForm.invalid">Suivant</button>
+                            </form>
+                        </fieldset>
+
+                        <fieldset>
+                            <form [formGroup]="identificationForm">
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Information d'identification:</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Etape 2 - 4</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="fieldlabels">Email: *</label>
+                                            <input type="text" name="email" formControlName="email"
+                                                [ngClass]="{ 'is-invalid': submitted && i.email.errors }"
+                                                placeholder="Votre adresse email..." />
+
+                                            <ng-container *ngFor="let validation of validation_messages.email">
+                                                <div class="alert alert-danger text-center"
+                                                    *ngIf="identificationForm.get('email').hasError(validation.type) && (identificationForm.get('email').dirty || identificationForm.get('email').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="label">Télephone: *</div>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="+261 xx xxx xx" formControlName="numero"
+                                                    [ngClass]="{ 'is-invalid': submitted && i.numero.errors }" />
+                                            </div>
+
+                                            <ng-container *ngFor="let validation of validation_messages.numero">
+                                                <div class="alert alert-danger text-center"
+                                                    *ngIf="identificationForm.get('numero').hasError(validation.type) && (identificationForm.get('numero').dirty || identificationForm.get('numero').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="row" formGroupName="matching_passwords">
+                                        <div class="col-sm-6">
+                                            <label class="fieldlabels">Mot de passe: *</label>
+                                            <input type="password" formControlName="password"
+                                                [ngClass]="{ 'is-invalid': submitted && identificationForm.get('matching_passwords').get('password').errors }"
+                                                placeholder="Votre mot de passe..." />
+
+                                            <ng-container *ngFor="let validation of validation_messages.password">
+                                                <div class="alert alert-danger text-center"
+                                                    *ngIf="identificationForm.get('matching_passwords').get('password').hasError(validation.type) && (identificationForm.get('matching_passwords').get('password').dirty || identificationForm.get('matching_passwords').get('password').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="fieldlabels">Confirmer votre mot de passe: *</label>
+                                            <input type="password" formControlName="confirm_password"
+                                                class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && identificationForm.get('matching_passwords').get('password').errors }"
+                                                placeholder="Confirmer votre mot de passe..." />
+
+                                            <ng-container
+                                                *ngFor="let validation of validation_messages.confirm_password">
+                                                <div class="alert alert-danger text-center"
+                                                    *ngIf="identificationForm.get('matching_passwords').get('confirm_password').hasError(validation.type) && (identificationForm.get('matching_passwords').get('confirm_password').dirty || identificationForm.get('matching_passwords').get('confirm_password').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-8 mt-2">
+                                            <p class="text-center">
+                                                <ng-container
+                                                    *ngFor="let validation of validation_messages.matching_passwords">
+                                                    <div class="alert alert-danger text-center"
+                                                        *ngIf="identificationForm.get('matching_passwords').hasError(validation.type) && (identificationForm.get('matching_passwords').get('confirm_password').dirty || identificationForm.get('matching_passwords').get('confirm_password').touched)">
+                                                        {{ validation.message }}
+                                                    </div>
+                                                </ng-container>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="next" class="next action-button" value="Suivant"
+                                    [disabled]="identificationForm.invalid" /> <input type="button" name="previous"
+                                    class="previous action-button-previous" value="Précedent" />
+                            </form>
+                        </fieldset>
+
+                        <fieldset>
+                            <form [formGroup]="coverForm">
+                                <div class="form-card">
+                                    <div class="row py-5 px-4">
+                                        <div class="col-md-12 mx-auto">
+                                            <!-- Profile widget -->
+                                            <div class="bg-white shadow rounded overflow-hidden">
+                                                <div class="px-4 pt-0 pb-4 cover">
+                                                    <button href="#"
+                                                        class="btn btn-outline-dark btn-sm mt-2 float-right"
+                                                        onClick="$('#cover').click()">Changer la photo</button>
+                                                    <input type="file" (change)="onCoverChange($event)" name="cover"
+                                                        id="cover" />
+                                                    <div class="media align-items-end profile-head">
+                                                        <div class="profile mr-3"><img src="assets/image/avtar-1.png"
+                                                                alt="..." width="130"
+                                                                class="rounded mb-2 img-thumbnail">
+                                                            <button href="#"
+                                                                class="btn btn-outline-dark btn-sm btn-block"
+                                                                onClick="$('#profil').click()">Changer</button>
+                                                            <input type="file" (change)="onProfilChange($event)"
+                                                                id="profil" />
+                                                        </div>
+                                                        <div class="media-body mb-5 text-white"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="button" name="finish" class="action-button" value="S'inscrire"
+                                    [disabled]="coverForm.invalid" (click)="signup()" />
+                                <!-- <input type="button" name="finish" class="action-button" (click)="finish()"
+                                    value="S'inscrire" [disabled]="coverForm.invalid" /> -->
+                                <input type="button" name="previous" class="previous action-button-previous"
+                                    value="Précedent" />
+                            </form>
+                        </fieldset>
+
+                        <fieldset class="successfinish">
+                            <form>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <!-- <h2 class="fs-title">Inscription complèté:</h2> -->
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Etape 4 - 4</h2>
+                                        </div>
+                                    </div> <br><br>
+                                    <h2 class="purple-text text-center" *ngIf="success != ''"><strong>Bienvenu cher
+                                            utilisateur !</strong></h2> <br>
+                                    <h2 class="purple-text text-center" *ngIf="error != ''"><strong>Votre inscription n'est
+                                            pas fini !</strong></h2> <br>
+                                    <div class="row justify-content-center" *ngIf="success != ''">
+                                        <div class="col-3 text-center"> <i class="fa 
+                                            fa-check size-font"></i>
+                                        </div>
+                                    </div> <br><br>
+                                    <div class="row justify-content-center" *ngIf="error != ''">
+                                        <div class="col-3 text-center text-danger"> <i class="fa 
+                                            fa-exclamation-triangle size-font"></i>
+                                        </div>
+                                    </div> <br><br>
+                                    <div class="row justify-content-center" *ngIf="success != ''">
+                                        <div class="col-7 text-center">
+                                            <h5 class="purple-text text-center">
+                                                {{success}}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center" *ngIf="error != ''">
+                                        <div class="col-7 text-center">
+                                            <h5 class="purple-text text-center">
+                                                {{error}}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous"
+                                        value="Précedent" *ngIf="error != ''" />
+                                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

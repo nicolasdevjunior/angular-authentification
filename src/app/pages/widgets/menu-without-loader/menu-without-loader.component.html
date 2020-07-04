@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#" routerLink="/">
+        <img src="assets/image/logo-m.png" alt="logo" style="width:40px;">
+    </a>
+
+    <!-- Links -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav pr-5">
+            <li class="nav-item">
+                <a class="nav-link" href="#" routerLink="/profile"> Profile </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    Plus
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#"><i class="fa fa-info-circle"></i> A propos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fa fa-question-circle"></i> Aide</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-deconnexion">
+                        <i class="fa fa-power-off"></i>
+                        <span> Deconnexion</span>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" routerLink="/login">Connexion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" routerLink="/register">Inscription</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="left-right-sidebar">
+    <div class="sidenav">
+        <a href="#" routerLink="/formation/list" title="formation">
+            <i class="fa fa-graduation-cap"></i>
+        </a>
+        <a href="#job" title="job">
+            <i class="fa fa-book-reader"></i>
+        </a>
+        <a href="#news" title="news">
+            <i class="fa fa fa-briefcase"></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class="fa fa fa-sitemap"></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class="fa fa fa-sitemap"></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class="fa fa fa-bullhorn"></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class="fa fa fa-audio-description"></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class="fa fa fa-gamepad"></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class="fa fa fa-users "></i>
+        </a>
+        <a href="#contact" title="contact">
+            <i class=" fa fa fa-cog"></i>
+        </a>
+    </div>
+
+    <div class="menu-formation">
+        <ul class="list-group">
+            <li class="list-group-item pt-4">
+                <a class="btn btn-dark btn-noir" href="#" title="" data-toggle="modal" data-target="#modal-nouveau">
+                    Ajouter
+                </a>
+            </li>
+            <li class="list-group-item" *ngFor="let category of listCategory">
+                <a class="text-sm" href="#" title="{{category._id}}"
+                    routerLink="/formation/{{category.tagName|uppercase}}/{{category._id}}">
+                    {{category.categoryName|uppercase}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu-chat">
+        <a href="#formation" title="formation">
+            <img class="rounded-circle" src="assets/image/avtar-1.jpg" alt="" />
+        </a>
+        <a href="#job" title="job">
+            <img class="rounded-circle" src="assets/image/avtar-2.jpg" alt="" />
+        </a>
+        <a href="#news" title="news">
+            <img class="rounded-circle" src="assets/image/avtar-3.jpg" alt="" />
+        </a>
+        <a href="#contact" title="contact">
+            <img class="rounded-circle" src="assets/image/avtar-4.jpg" alt="" />
+        </a>
+        <a href="#contact" title="contact">
+            <img class="rounded-circle" src="assets/image/avtar-5.jpg" alt="" />
+        </a>
+        <a href="#contact" title="contact">
+            <img class="rounded-circle" src="assets/image/avtar-6.jpg" alt="" />
+        </a>
+        <a href="#contact" title="contact">
+            <img class="rounded-circle" src="assets/image/avtar-7.jpg" alt="" />
+        </a>
+        <a href="#contact" title="contact">
+            <img class="rounded-circle" src="assets/image/avtar-8.jpg" alt="" />
+        </a>
+        <a href="#contact" title="contact">
+            <img class="rounded-circle" src="assets/image/avtar-8.jpg" alt="" />
+        </a>
+    </div>
+
+    <div class="menu">
+
+    </div>
+</div>
+
+
+
+<app-nouveau-category (categoryEvent)="getNewValue($event)"></app-nouveau-category>
+<app-modal-deconnexion></app-modal-deconnexion>

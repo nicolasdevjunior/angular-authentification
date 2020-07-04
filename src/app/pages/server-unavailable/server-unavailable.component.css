@@ -1,0 +1,35 @@
+.titre{
+    font-size: 7rem;
+}
+
+h2{
+    font-size: 4.375rem;
+}
+
+h3{
+    font-size: 1rem;
+}
+
+.container{
+    /* padding: 100px 100px; */
+}
+
+.main{
+    min-height: 100vh;
+    background: linear-gradient(87deg,  #fc6959 0, #f56036 100%) !important
+}
+
+h1,h2,h3 , p{
+    color: #fff !important;
+}
+
+.main{
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
+}
+
+.main p{
+    margin-top: 80px;
+}

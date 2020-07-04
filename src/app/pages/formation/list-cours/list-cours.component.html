@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+
+<div class="main d-flex">
+    <div class="container">
+        <div class="row justify-content-center mt-2">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Formation /{{tagName|uppercase}} /
+                            {{titleFormation|uppercase}}
+                            <a href="#" class="btn btn-sm btn-dark float-right" routerLink="/formation/{{tagName}}/{{titleFormation}}/{{idFormation}}/create">Créer un cours</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let cour of coursData">
+                <a href="#" class="m-0 text-dark">{{cour.title}}</a>
+            </li>
+        </ul>
+
+    </div>
+</div>

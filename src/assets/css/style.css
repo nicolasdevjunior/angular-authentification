@@ -1,0 +1,9 @@
+  
+  .main {
+    margin: 4% 0 0 19%;/* Same as the width of the sidenav */
+    padding: 0px 10px;
+    background-color: #dddddd;
+    min-height: 100vh;
+    padding-top: 20px;
+    width: 56%;
+  }

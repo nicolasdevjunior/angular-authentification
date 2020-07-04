@@ -1,0 +1,94 @@
+.btn-noir{
+  background-color: #131313;
+}
+
+.sidenav {
+    height: 100%;
+    width: 5%;
+    position: fixed;
+    z-index: 1;
+    top: 40px;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+.menu-formation {
+  height: 100%;
+  width: 14%;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  left: 5%;
+  background-color: #343a40;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.menu-chat {
+  width: 5%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.menu {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  width: 20%;
+  right: 5%;
+  background-color: #343a40;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.menu-chat a img {
+  width: 45px;
+}
+
+
+li {
+  background: none !important;
+}
+
+.list-group-item:first-child, .list-group-item:last-child  {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.sidenav a, .menu-formation a,.menu-chat a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+}
+
+  .menu-formation a {
+    font-size: 14px;
+  }
+
+  .sidenav a:hover, .menu-formation:hover {
+    color: #f1f1f1;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav,.menu-formation {padding-top: 15px;}
+    .sidenav a {font-size: 14px;}
+    .menu-formation a {font-size: 14px;}
+  }
+
+.navbar {
+      padding-left: 4rem !important;
+      border-bottom: 1px solid #585d62;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,1) !important;
+}
